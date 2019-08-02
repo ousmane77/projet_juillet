@@ -1,0 +1,94 @@
+primary{% extends 'layouts/base2.html' %}
+
+{% block content %}
+<div style="margin-top: 100px;" class="home text-white">
+<div class="row">
+			<div class="col-md-2" style="border: 1px solid grey">
+				<ul>
+					{% for cham in championnats %}
+					<li>
+						<a href="{% url 'nymbet:championnat' cham.id %}">{{ cham.name }} </a>
+					</li>
+					{% if not forloop.last %}
+						<hr>
+					{% endif %}
+
+					{% empty %}
+						<p>Desolé, pas de matchs disponible</p>
+					{% endfor %}
+				</ul>
+
+			</div>
+
+			<div class='col-md-10'>
+			<table class="table table-striped text-center">
+ 					{% for match in match %}
+ 					{% if match.championnat_id == championnat.id%}
+			 		<tr>
+			        <thead>
+			                <th scope="col" class='blanc'><strong>{{ match.discipline }}
+			                	{% if match.discipline == 'Football' %}
+			                	<i class="fas fa-futbol"></i>
+			                	{% elif match.discipline == 'Basket-ball' %}
+			                	<i class="fas fa-basketball-ball"></i>
+			                	{% endif %}
+			                </strong>
+			                </th>
+			        </thead>
+			      	</tr>
+			      	<tr>
+			      		<thead>
+			      			<th scope="col" class='blanc'><strong>Date</strong></th>
+			      			<th class='blanc'><strong>Heure</strong></th>
+			      			<th></th>
+
+			                <th>
+			                	<span  class='blanc'><strong>Victoire 1</strong></span>
+			                	<span style="margin:0 50px" class='blanc'><strong>Nul</strong></span>
+			                	<span style="" class='blanc'><strong>Victoire 2</strong></span>
+			               
+			                </th>
+			                <th class='blanc'><strong>Option</strong></th>
+			      		</thead>
+			      	</tr>
+			       	<tbody>
+			       		
+			       		<td class='blanc'>{{ match.date }}</td>
+			       		<td class='blanc'>{{ match.heure }}</td>
+			       		<td><a href="{% url 'nymbet:match' match.id %}" style="color: white">{{ match.equipe1 }} - {{ match.equipe2 }}</a></td>
+			       		<td>
+			       			{% for v in vic1%}
+			       				{% if v.match_id == match.id and v.nom_option == 'victoire'%}
+				       			<a href="" class="btn btn-primary">{{ v.cote1 }} </a>
+								{% endif %}
+			       			{% endfor %}
+							{% for n in nul%}
+			       				{% if n.match_id == match.id and n.nom == 'Nul'%}
+				       			<a href="" class="btn btn-success">{{ n.cote1 }} </a>
+								{% endif %}
+			       			{% endfor %}							
+							{% for v in vic2%}
+			       				{% if v.match_id == match.id and v.nom_option == 'victoire'%}
+				       			<a href="" class="btn btn-info">{{ v.cote1 }} </a>
+								{% endif %}
+			       			{% endfor %}
+					       		
+			       		</td>
+			       		<td>
+			       			<a href="" style="color: white">Voir
+			       				<i class="fas fa-eye"></i>
+			       			</a>
+			       		</td>
+			       		
+			       	</tbody>
+			       	{% endif %}
+			        {% endfor %}
+
+			    </table>
+				
+			
+			</div>
+
+</div>
+</div>
+{% endblock  %}

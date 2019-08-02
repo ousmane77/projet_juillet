@@ -1,0 +1,32 @@
+{%load static%}
+{% load account %}
+{% user_display user %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>NymBet</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'css2/bootstrap.min.css'%}" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="{% static 'css2/mdb.min.css'%}" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="{% static 'css2/style.min.css'%}" rel="stylesheet">
+  <link href="{% static 'css/style2.css'%}" rel="stylesheet">
+</head>
+<body>
+
+   {% include 'layouts/_nav.html' %}
+
+
+  {% block content %}
+
+  {% endblock %}
+
+</body>
+</html>

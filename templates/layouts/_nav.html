@@ -1,0 +1,70 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+    <div class="container">
+
+      <!-- Brand -->
+      <a class="navbar-brand waves-effect" href="{% url 'nymbet:home' %}">
+        <strong class="blue-text"><h2>NymBet</h2></strong>
+      </a>
+
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links -->
+      <div class="" id="navbarSupportedContent">
+
+        
+
+        <!-- Right -->
+        <ul class="navbar-nav nav-flex-icons">
+           <li class="nav-item">
+            <a href="{% url 'nymbet:home' %}" class="nav-link waves-effect">
+              <span class="clearfix d-none d-sm-inline-block">Accueil</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="clearfix d-none d-sm-inline-block"> Selection </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'account_logout' %}" class="nav-link waves-effect">
+              
+              <i class="fas fa-logout"></i>
+              <span class="clearfix d-none d-sm-inline-block"> Se deconnecter </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect">
+              <i class="fas fa-user"></i>
+              <span class="clearfix d-none d-sm-inline-block">{{user| upper}}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+           {% for use in users%}
+              {% if use.user == user %}
+            <a class="nav-link waves-effect">
+              <span class="clearfix d-none d-sm-inline-block">Solde : {{use.solde}}</span>
+              {% endif %}
+            {% endfor %}
+            </a>
+          </li>
+
+          <li class="nav-item">
+           
+            <a href="{% url 'nymbet:documentation' %}" class="nav-link waves-effect">
+              <span class="clearfix d-none d-sm-inline-block">Documentations</span>
+            </a>
+          </li>
+          
+             
+              
+        </ul>
+
+      </div>
+
+    </div>
+  </nav>

@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block head_title %}{% endblock %}</title>
+    {% block extra_head %}
+    {% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'font/all.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <script defer src="{% static 'font/all.js' %}" ></script>
+  </head>
+  <body>
+    {% block body %}
+
+    <header>
+      <div class="container">
+          <div class="row">
+              <!-- logo -->
+              <div  class="col-lg-3 col-xs-12">
+                  <div class="logo">
+                      <h2>NymBet</h2>
+                  </div>
+              </div>
+          </div>
+      </div>
+</header>
+<section class="sections home text-center">
+      <div class="overlay">
+         
+            <div class="row affiche" >
+              <div class="col-md-6" >
+                <div class="container-fluid">					       
+                <div class="card bg-dark text-white ren">
+                   
+                </div> 
+                </div>
+                <div class="alert-success">
+                  
+                </div>
+              </div>
+              <div class="col-md-6 text-white" >
+                
+                {% block content %}
+                {% endblock %}
+                {% endblock %}
+                {% block extra_body %}
+                {% endblock %}
+              </div>
+              
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert-danger">{{message}}</li>
+                    {% endfor %}
+                  
+                {% endif %}
+
+            </div>
+            <div class="row">
+               
+            </div>
+      </div>
+     
+      
+</section>
+
+
+
+
+
+   
+
+    <script src="{% static 'bootstrap/jquery-3.3.1.min.js' %}"></script>
+	  <script src="{% static 'bootstrap/bootstrap.js' %}" ></script>
+  </body>
+</html>

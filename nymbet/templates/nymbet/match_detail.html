@@ -1,0 +1,137 @@
+{% extends 'layouts/base2.html' %}
+
+{% block content %}
+<div style="margin-top: 100px;" class="home text-white">
+<div class="row">
+			<div class="col-md-2" style="border: 1px solid grey">
+				<ul>
+					{% for cham in championnats %}
+					<li>
+						<a href="{% url 'nymbet:championnat' cham.id %}">{{ cham.name }}</a>
+					</li>
+					{% if not forloop.last %}
+						<hr>
+					{% endif %}
+
+					{% empty %}
+						<p>Desolé, pas de matchs disponible</p>
+					{% endfor %}
+				</ul>
+
+			</div>
+
+			<div class='col-md-10'>
+			<table class="table table-striped text-center">
+ 					
+			 		<tr>
+			        <thead>
+			                <th scope="col" class="text-center blanc" colspan='5'>
+			                	<strong>{{ match.equipe1 }} - {{ match.equipe2 }}</strong>
+			                </th>
+
+			        </thead>
+			      	</tr>
+			      	<tr>
+					{% for opt in option1%}
+					{% for opt1 in option2%}
+					{% if opt.match_id == match.id and opt1.match_id == match.id and  opt.nom_option == 'But' and opt1.nom_option == 'But'%}
+			      		<thead>
+			      			
+			       				
+			      			<th scope="col"><strong></strong></th>
+
+			                <th>
+			                	<span  class='blanc'><strong>1</strong></span>
+			                	<span style="margin:0 50px" class='blanc'><strong>Pas de but</strong></span>
+			                	<span style="" class='blanc'><strong>2</strong></span>
+			                </th>  	
+					    </thead>
+					</tr>
+					
+			       	<tbody>
+			       		<td class='blanc'>{{ opt.nom_option }}</td>
+						<td>
+						{% for v in option1%}
+			       				{% if v.match_id == match.id and v.nom_option == 'But'%}
+				       			<a href="" class="btn btn-primary">{{ v.cote1 }} </a>
+								{% endif %}
+			       			{% endfor %}
+							{% for n in neutre%}
+			       				{% if n.match_id == match.id and n.nom == 'Pas de but'%}
+				       			<a href="" class="btn btn-success">{{ n.cote1 }} </a>
+								{% endif %}
+			       			{% endfor %}							
+							{% for v in option2%}
+			       				{% if v.match_id == match.id and v.nom_option == 'But'%}
+				       			<a href="" class="btn btn-info">{{ v.cote1 }} </a>
+								{% endif %}
+			       			{% endfor %}
+						</td>
+
+
+			       		
+			       	</tbody>
+					{% elif opt.match_id == match.id and opt1.match_id == match.id and opt.nom_option == 'Double chance' and opt1.nom_option == 'Double chance'%}
+			      		<thead>
+			      			
+			       				
+			      			<th scope="col"><strong></strong></th>
+
+			                <th>
+			                	<span  class="blanc"><strong>1X</strong></span>
+			                	<span style="margin:0 50px" class="blanc"><strong>X</strong></span>
+			                	<span style="" class="blanc"><strong>X2</strong></span>
+			                </th>  	
+					    </thead>
+					</tr>
+					
+			       	<tbody>
+			       		<td class="blanc">{{ opt.nom_option }}</td>
+						<td>
+						{% for v in option1%}
+			       				{% if v.match_id == match.id and v.nom_option == 'Double chance'%}
+				       			<a href="" class="btn btn-primary">{{ v.cote1 }} </a>
+								{% endif %}
+			       			{% endfor %}
+							{% for n in neutre%}
+			       				{% if n.match_id == match.id and n.nom == 'Nul'%}
+				       			<a href="" class="btn btn-success">{{ n.cote1 }} </a>
+								{% endif %}
+			       			{% endfor %}							
+							{% for v in option2%}
+			       				{% if v.match_id == match.id and v.nom_option == 'Double chance'%}
+				       			<a href="" class="btn btn-info">{{ v.cote1 }} </a>
+								{% endif %}
+			       			{% endfor %}
+						</td>
+
+
+			       		
+			       	</tbody>
+					  
+			        {% endif %}
+					{% empty %}
+						<p>Desolé, pas d'option de paris disponible</p>
+					{% endfor %}
+					{% endfor %}
+			    </table>
+				{%for prono in pronos%}
+				{% if prono.match_id == match.id %}
+				
+
+</div>
+			<div class="text-center col-md-6" style="margin-left: 400px"><h3>Pronostic</h3>	
+				<span>Victoire 1</span><span style="margin:20px 81px">Nul</span><span>Victoire 2</span>			
+				<div class="progress">
+				  <div class="progress-bar" role="progressbar" style="width: {{prono.v1 }}%" aria-valuenow="{{prono.v1 }}" aria-valuemin="0" aria-valuemax="100">{{prono.v1 }}%</div>
+				  <div class="progress-bar bg-success" role="progressbar" style="width: {{prono.nul }}%" aria-valuenow="{{prono.nul }}" aria-valuemin="0" aria-valuemax="100">{{prono.nul }}</div>
+				  <div class="progress-bar bg-info" role="progressbar" style="width: {{prono.v2 }}%" aria-valuenow="{{prono.v2 }}" aria-valuemin="0" aria-valuemax="100">{{prono.v2 }}%</div>
+				</div>
+				</div>
+	
+				{%endif%}
+				{%endfor%}
+			
+			</div>
+</div>
+{% endblock  %}

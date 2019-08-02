@@ -1,0 +1,42 @@
+{% extends 'layouts/base2.html' %}
+
+{% block content %}
+<div style="margin-top: 100px;" class="home text-white">
+<div class="row mb-5">
+	<div class="col-12 text-center">
+		<h3 style="font-weight: bold;">Du mal a comprendre les options de paris ? fiez-vous a la documentation du site</h3>
+	</div>		
+</div>
+<div class="row">
+<div class="col-12">
+	<table class="table table-striped">
+	  <thead>
+	    <tr>
+	      <th scope="col" style="color: white">#</th>
+	      <th scope="col" style="color: white">OPTION</th>
+	      <th scope="col" style="color: white">Choix 1</th>
+	      <th scope="col" style="color: white">Choix 2</th>
+	      <th scope="col" style="color: white">Choix 3</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr>
+	      <th scope="row" style="color: white">1</th>
+	      <td style="color: white">Double chance (90 min)</td>
+	      <td style="color: white">1X : victoire ou nul de l'equipe 1</td>
+	      <td style="color: white">X : match nul</td>
+	      <td style="color: white">2X : victoire ou nul de l'equipe 2</td>
+	    </tr>
+	    <tr>
+	      <th scope="row" style="color: white">2</th>
+	      <td style="color: white">Victoire</td>
+	      <td style="color: white">1 : victoire de l'equipe domicilée</td>
+	      <td style="color: white">X : match nul</td>
+	      <td style="color: white">2 : victoire de l'equipe visiteuse</td>
+	    </tr>
+	  </tbody>
+	</table>
+</div>
+</div>
+</div>
+{% endblock  %}
